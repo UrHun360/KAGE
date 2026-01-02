@@ -103,14 +103,14 @@ end
 -- AutoFish loop
 task.spawn(function()
     while task.wait(2) do
-        autoFishStep()
-    end
-end)
-
--- Player mods loop
-RunService.Heartbeat:Connect(function()
-    if Settings.WalkSpeed ~= humanoid.WalkSpeed then
-        humanoid.WalkSpeed = Settings.WalkSpeed
+        if typeof(autoFishStep) == "function" then
+            local ok, err = pcall(autoFishStep)
+            if not ok then
+                log("AutoFish error:", err)
+            end
+        else
+            log("autoFishStep is nil")
+        end
     end
 end)
 
