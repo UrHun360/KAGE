@@ -47,11 +47,24 @@ local Settings = {
 -- UTILITY FUNCTIONS
 ----------------------
 local function getTool()
+    -- cek di character
     local tool = character:FindFirstChildOfClass("Tool")
     if tool then
-        log("Tool:", tool.Name)
+        log("Tool (character):", tool.Name)
+        return tool
     end
-    return tool
+
+    -- cek di backpack
+    local backpack = player:WaitForChild("Backpack")
+    tool = backpack:FindFirstChildOfClass("Tool")
+    if tool then
+        log("Tool (backpack):", tool.Name)
+        tool.Parent = character -- auto equip
+        return tool
+    end
+
+    log("No fishing tool found")
+    return nil
 end
 
 local function useTool()
