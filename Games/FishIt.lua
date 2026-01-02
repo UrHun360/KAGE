@@ -51,12 +51,20 @@ local Settings = {
 ----------------------
 -- UTILITY FUNCTIONS
 ----------------------
-local function getTool()
-    local tool = character:FindFirstChildOfClass("Tool")
-    if tool then
-        log("Tool:", tool.Name)
+local function useTool()
+    local tool = getTool()
+    if not tool then
+        log("No tool to use")
+        return
     end
-    return tool
+
+    -- CEK apakah Activate ada
+    if typeof(tool.Activate) == "function" then
+        tool:Activate()
+        log("Tool activated via Activate()")
+    else
+        log("Tool has no Activate(), skipping")
+    end
 end
 
 local function setWalkSpeed(speed)
