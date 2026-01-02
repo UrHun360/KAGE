@@ -8,6 +8,8 @@
 if game:GetAttribute("FISHIT_FULL_LOADED") then return end
 game:SetAttribute("FISHIT_FULL_LOADED", true)
 
+print("DEBUG: FishIt script STARTED")
+
 --================== SERVICES =======================
 local Players = game:GetService("Players")
 local UIS = game:GetService("UserInputService")
