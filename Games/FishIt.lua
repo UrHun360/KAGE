@@ -38,11 +38,16 @@ log("Character ready")
 -- CONFIG
 ----------------------
 local Settings = {
-    AutoFish = true,
+    AutoFish = false,
     WalkSpeed = 16,
     JumpPower = 50,
 }
 
+local Settings = {
+    AutoFish = true,
+    WalkSpeed = 16,
+    JumpPower = 50,
+}
 ----------------------
 -- UTILITY FUNCTIONS
 ----------------------
