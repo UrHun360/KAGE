@@ -37,11 +37,6 @@ log("Character ready")
 ----------------------
 -- CONFIG
 ----------------------
-local Settings = {
-    AutoFish = false,
-    WalkSpeed = 16,
-    JumpPower = 50,
-}
 
 local Settings = {
     AutoFish = true,
@@ -51,6 +46,14 @@ local Settings = {
 ----------------------
 -- UTILITY FUNCTIONS
 ----------------------
+local function getTool()
+    local tool = character:FindFirstChildOfClass("Tool")
+    if tool then
+        log("Tool:", tool.Name)
+    end
+    return tool
+end
+
 local function useTool()
     local tool = getTool()
     if not tool then
@@ -58,7 +61,6 @@ local function useTool()
         return
     end
 
-    -- CEK apakah Activate ada
     if typeof(tool.Activate) == "function" then
         tool:Activate()
         log("Tool activated via Activate()")
@@ -80,13 +82,6 @@ local function setJumpPower(power)
         log("JumpPower set to", power)
     end
 end
-
-local function useTool()
-    local tool = getTool()
-    if not tool then
-        log("No tool to use")
-        return
-    end
     
 ----------------------
 -- FEATURE FUNCTIONS
