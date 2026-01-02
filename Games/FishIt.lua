@@ -38,7 +38,7 @@ log("Character ready")
 -- CONFIG
 ----------------------
 local Settings = {
-    AutoFish = false,
+    AutoFish = true,
     WalkSpeed = 16,
     JumpPower = 50,
 }
@@ -68,17 +68,20 @@ local function setJumpPower(power)
     end
 end
 
+local function useTool()
+    local tool = getTool()
+    if not tool then
+        log("No tool to use")
+        return
+    end
+    
 ----------------------
 -- FEATURE FUNCTIONS
 ----------------------
 local function autoFishStep()
     if not Settings.AutoFish then return end
 
-    local tool = getTool()
-    if not tool then return end
-
-    -- sementara cuma debug
-    log("AutoFish tick")
+    useTool()
 end
 
 ----------------------
@@ -86,7 +89,7 @@ end
 ----------------------
 -- AutoFish loop
 task.spawn(function()
-    while task.wait(1) do
+    while task.wait(2) do
         autoFishStep()
     end
 end)
