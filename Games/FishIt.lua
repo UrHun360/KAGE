@@ -1,6 +1,6 @@
 --==================================================
 -- 🐟 Fish It Script (Clean Full Version)
--- Author : You
+-- Author : KAGE
 -- Purpose: Learning, testing, personal use
 --==================================================
 
