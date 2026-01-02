@@ -1,0 +1,45 @@
+--==================================================
+-- URHUN Loader (Final)
+--==================================================
+
+if game:GetAttribute("URHUN_LOADER_LOADED") then
+    warn("Loader already executed")
+    return
+end
+game:SetAttribute("URHUN_LOADER_LOADED", true)
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local Games = {
+    [121864768012064] = "https://raw.githubusercontent.com/UrHun360/KAGE/main/Games/FishIt.lua",
+}
+
+local scriptURL = Games[game.PlaceId]
+
+if not scriptURL then
+    player:Kick("❌ Game not supported\nJoin our Discord")
+    return
+end
+
+local success, code = pcall(function()
+    return game:HttpGet(scriptURL)
+end)
+
+if not success or not code then
+    warn("Failed to fetch script")
+    return
+end
+
+if typeof(loadstring) ~= "function" then
+    warn("loadstring not supported")
+    return
+end
+
+local ok, err = pcall(function()
+    loadstring(code)()
+end)
+
+if not ok then
+    warn("Runtime error:", err)
+end
